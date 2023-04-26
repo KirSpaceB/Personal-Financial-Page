@@ -1,0 +1,5 @@
+.bg-primaryColors {
+  @apply bg-pc1,
+  @apply bg-pc2,
+  @apply bg-pc3
+}
