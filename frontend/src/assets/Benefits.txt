@@ -1,0 +1,10 @@
+Actually text is all in one place. So we don't have to scour all our components for the title data.
+Were separating responsiblties from data to text
+
+Localization: Refers to the act of converting the product for it to be suitable for the audience. Ex: Japanese Game to English(Translate the game from Japanese to English)
+
+In the Context of our App if we hard coded a prop with a title if we needed spanish natives to read it. It would be a lot harder for it to scale
+
+Using the Json file data abstraction we can use Localization
+
+Library to help with Localization

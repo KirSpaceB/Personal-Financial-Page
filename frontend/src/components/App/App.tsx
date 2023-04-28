@@ -1,11 +1,10 @@
-import DashboardPage from "./DashboardPage/DashboardPage"
-
+import DashboardPage from "../DashboardPage/DashboardPage"
 
 function App() {
 
   return (
     <>
-      <div className="bg-pc1 min-h-screen">
+      <div className="min-h-screen bg-pc1">
         <DashboardPage/>
       </div>
     </>

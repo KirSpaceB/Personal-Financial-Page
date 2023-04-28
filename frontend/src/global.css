@@ -1,0 +1,7 @@
+/* If we want to add styling to specific component we would put the style file for the component next to the component file (co-located) */
+/* co-locate as much files as possible */
+.bg-primaryColors {
+  @apply bg-pc1,
+  @apply bg-pc2,
+  @apply bg-pc3
+}
