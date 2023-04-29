@@ -1,2 +1,0 @@
-// Since this use more than once we can put it the shared
-// We can create our own 'bootstrap' type compoenents and put and here
