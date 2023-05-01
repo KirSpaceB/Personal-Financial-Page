@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getNewsAPI } from "../../../services/NewsAPI/getNewsAPI"
 import { propsFromNewsAPI } from "../../../services/NewsAPI/types"
+
 export const NewsCard = () => {
   const [dataFromNewsFetchNews, setDataFromNewsFetchNews] = useState<propsFromNewsAPI>({
     title:'',
