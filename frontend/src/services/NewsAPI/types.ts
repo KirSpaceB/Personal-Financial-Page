@@ -1,6 +1,6 @@
 export type GetNewsApiResponse = {
   nextPage: string,
-  results: NewsApiResult[],
+  results: NewsApiResult[], // See this type right here its more safety from our other type
   status: string,
   totalResults: number,
 };
