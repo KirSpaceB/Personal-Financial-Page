@@ -5,7 +5,6 @@ export type stocksCardProps = {
 };
 export const StocksCard:FC<stocksCardProps> = (props) => {
   const {stocksCardTitle} = props;
-
   return (
     <div>
       <div>
