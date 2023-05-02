@@ -1,41 +1,39 @@
 import { getNewsAPI } from "./getNewsAPI";
-import { propsFromNewsAPI } from "./types";
-import { VITE_NEWS_IO_API_KEY } from "../../constants";
-
-
-const NEWS_IO_API_KEY = 'api_key';
+const NEWS_IO_API_KEY = 'mockKey';
 const API_KEY_URL = `https://newsdata.io/api/1/news?apikey=${NEWS_IO_API_KEY}&q=Tesla&country=us&language=en`;
-
-const mockAPIResponse = {
+//How do I actually mock the api response
+const MOCK_API_RESPONSE = {
   title:'test',
   link:'test',
   pubdate:'test',
+  results:[{},{}]
 };
-
+// When we mock our variables we use in the none test file it uses the actual variable values. BUT when we call our function in jest it uses MOCKED variable values rather than the actual values
 jest.mock('../../constants', () => {
   return {
-    viteENVMock:jest.fn().mockImplementation(() => VITE_NEWS_IO_API_KEY)
+    VITE_NEWS_IO_API_KEY:'mockKey'
   }
 });
-
-global.fetch = jest.fn(() => {
-  Promise.resolve({
-    json: () => Promise.resolve(mockAPIResponse)
-  });
-}) as jest.Mock;
+//Same as fetch on left. Instead of calling actual fetch. gl
+//Global fetches all fetch 
+//global.fetch points to a mocked version of fetch intead of actual fetch
+global.fetch = jest.fn().mockResolvedValue({
+  json: jest.fn().mockResolvedValue(MOCK_API_RESPONSE)
+})
 
 describe('testing suite for getNewsAPI', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  it('tests if newsAPIPropsDisplayedInNewsCard is correctly returning the right object', async () => {
-    const expectedProps:propsFromNewsAPI = {
-      title:'test',
-      link:'link-test',
-      pubDate:'pubtest'
-    };
-    const result = await getNewsAPI();
-    expect(result).toEqual(expectedProps);
-    expect(fetch).toHaveBeenCalledWith(API_KEY_URL,{method:'GET'});
+  it('Tests if fetch is being called with API key', async () => {
+    //Work
+    const result = getNewsAPI()
+    expect(global.fetch).toHaveBeenCalledWith(API_KEY_URL,{method:'GET'});
+  });
+  it('Test API response', async () => {
+    //Work
+    const result = await getNewsAPI()
+    //Verify
+    expect(result).toBe(MOCK_API_RESPONSE);
   });
 });

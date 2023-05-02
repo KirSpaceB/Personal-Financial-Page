@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react"
 import { getNewsAPI } from "../../../services/NewsAPI/getNewsAPI"
-import { propsFromNewsAPI } from "../../../services/NewsAPI/types"
-
+import { NewsAPIResponse } from "../../../services/NewsAPI/types"
+import { NewsApiResult } from "../../../services/NewsAPI/getNewsAPI"
+type ReleventCardData = {
+  title:string,
+  link:string,
+  pubDate:string,
+}
+const INITIAL_VALUES:ReleventCardData = {
+  title:'',
+  link:'',
+  pubDate:'',
+}
 export const NewsCard = () => {
-  const [dataFromNewsFetchNews, setDataFromNewsFetchNews] = useState<propsFromNewsAPI>({
-    title:'',
-    link:'',
-    pubDate:'',
-  })
+  const [newsAPIResponse, setNewsAPIResponse] = useState<ReleventCardData>(INITIAL_VALUES);
+  
   useEffect(() => {
     const fetchNewsData = async () => {
-      const dataToDisplayFromNewsAPI = await getNewsAPI();
-      console.log(dataToDisplayFromNewsAPI);
-      setDataFromNewsFetchNews(dataToDisplayFromNewsAPI)
+      const API_DATA = await getNewsAPI();
+      const desireResult = API_DATA?.results[2] as ReleventCardData
+      setNewsAPIResponse(desireResult)
     };
     fetchNewsData()
-  },[])
+  },[]);
   
-  const {title,link,pubDate} = dataFromNewsFetchNews;
+  const {title,link,pubDate} = newsAPIResponse;
   
   return (
     <div className="flex justify-center cotent-center">
