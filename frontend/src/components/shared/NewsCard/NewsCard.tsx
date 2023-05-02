@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react"
 import { getNewsAPI } from "../../../services/NewsAPI/getNewsAPI"
-import { NewsAPIResponse } from "../../../services/NewsAPI/types"
-import { NewsApiResult } from "../../../services/NewsAPI/getNewsAPI"
 type ReleventCardData = {
   title:string,
   link:string,
   pubDate:string,
-}
+};
 const INITIAL_VALUES:ReleventCardData = {
   title:'',
   link:'',
   pubDate:'',
-}
+};
 export const NewsCard = () => {
   const [newsAPIResponse, setNewsAPIResponse] = useState<ReleventCardData>(INITIAL_VALUES);
   

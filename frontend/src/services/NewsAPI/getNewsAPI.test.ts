@@ -1,25 +1,22 @@
 import { getNewsAPI } from "./getNewsAPI";
-const NEWS_IO_API_KEY = 'mockKey';
-const API_KEY_URL = `https://newsdata.io/api/1/news?apikey=${NEWS_IO_API_KEY}&q=Tesla&country=us&language=en`;
-//How do I actually mock the api response
+import { VITE_NEWS_IO_API_KEY } from "../../constants";
+
+const API_KEY_URL = `https://newsdata.io/api/1/news?apikey=${VITE_NEWS_IO_API_KEY}&q=Tesla&country=us&language=en`;
+// Mock the result of what were getting from the return statement
 const MOCK_API_RESPONSE = {
-  title:'test',
-  link:'test',
-  pubdate:'test',
-  results:[{},{}]
+  results:[{}]
 };
-// When we mock our variables we use in the none test file it uses the actual variable values. BUT when we call our function in jest it uses MOCKED variable values rather than the actual values
+// Whats the difference between creating a variable with call MOCK_KEY using jest.mock
+// Does Jest read all the variables in the left file
 jest.mock('../../constants', () => {
   return {
     VITE_NEWS_IO_API_KEY:'mockKey'
   }
 });
-//Same as fetch on left. Instead of calling actual fetch. gl
-//Global fetches all fetch 
-//global.fetch points to a mocked version of fetch intead of actual fetch
+
 global.fetch = jest.fn().mockResolvedValue({
   json: jest.fn().mockResolvedValue(MOCK_API_RESPONSE)
-})
+});
 
 describe('testing suite for getNewsAPI', () => {
   afterEach(() => {
@@ -27,7 +24,8 @@ describe('testing suite for getNewsAPI', () => {
   });
   it('Tests if fetch is being called with API key', async () => {
     //Work
-    const result = getNewsAPI()
+    getNewsAPI()
+    //Verify
     expect(global.fetch).toHaveBeenCalledWith(API_KEY_URL,{method:'GET'});
   });
   it('Test API response', async () => {
