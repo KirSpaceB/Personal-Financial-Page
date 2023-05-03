@@ -1,6 +1,10 @@
+import { DisplayStocks } from "./DisplayStocks/DisplayStocks"
+
 
 export const StocksPage = () => {
   return (
-    <div>StocksPage</div>
+    <div>
+      <DisplayStocks />
+    </div>
   )
 }
