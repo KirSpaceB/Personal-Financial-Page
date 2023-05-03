@@ -1,8 +1,9 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react';
 export type cryptoCardProps = {
   cryptoCardTitle:string
 }
 export const CryptoCard:FC<cryptoCardProps> = (props) => {
+
   const {cryptoCardTitle} = props;
   return (
     <div>

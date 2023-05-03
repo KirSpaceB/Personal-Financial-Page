@@ -11,6 +11,9 @@ const DashboardPage = () => {
   function navigateToStocksPage() {
     navigateHook('/StocksPage')
   };
+  function navigateToCryptoPage() {
+    navigateHook('/CryptoPage')
+  };
   
   return (
     <div>
@@ -31,7 +34,7 @@ const DashboardPage = () => {
             <StocksCardFromIndex stocksCardTitle={cardsData['stockTitle']}/>
           </div>
           
-          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold">
+          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToCryptoPage}>
             <CryptoCard cryptoCardTitle={cardsData['cryptoTitle']}/>          
           </div>
 

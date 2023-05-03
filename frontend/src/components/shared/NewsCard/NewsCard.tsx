@@ -11,15 +11,16 @@ const INITIAL_VALUES:ReleventCardData = {
   pubDate:'',
 };
 
-export const NewsCard = () => {
+export const NewsCard = (props) => {
   const [newsAPIResponse, setNewsAPIResponse] = useState<ReleventCardData>(INITIAL_VALUES);
   
+  const fetchNewsData = async () => {
+    const apiData = await getNewsAPI();
+    const desireResult = apiData?.results[2] as ReleventCardData
+    setNewsAPIResponse(desireResult)
+  };
+  
   useEffect(() => {
-    const fetchNewsData = async () => {
-      const apiData = await getNewsAPI();
-      const desireResult = apiData?.results[2] as ReleventCardData
-      setNewsAPIResponse(desireResult)
-    };
     fetchNewsData()
   },[]);
   
@@ -28,7 +29,7 @@ export const NewsCard = () => {
   return (
     <div className="text-center">
       <div>
-        <h3>{title}</h3>
+        <h3 className="title">{title}</h3>
         <a href={link} target="_blank">Link to Article</a>
         <h2>Published Dates {pubDate}</h2>
       </div>
