@@ -1,15 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getCoinGecko } from "../../../services/CoinGeckoApi/getCoinGecko";
 
+type ResponseData = {
+  [key: string]: {
+    usd: number;
+    usd_24h_vol: number;
+    usd_market_cap: number;
+  };
+};
+
 export const DisplayCrypto = () => {
+  const [displayCoin, setDisplayCoin] = useState<ResponseData>({});
+
   async function coinGeckApiData() {
     const data = await getCoinGecko();
-    return data
-  };
+    setDisplayCoin(data);
+  }
+
   useEffect(() => {
-    console.log(coinGeckApiData());    
-  },[]);
+    coinGeckApiData();
+  }, []);
+
   return (
-    <div>DisplayCrypto</div>
-  )
-}
+    <div>
+      {Object.entries(displayCoin).map(([key, responseData], index) => (
+        <div key={index}>
+          {key}: {responseData.usd} {responseData.usd_24h_vol} {responseData.usd_market_cap}
+        </div>
+      ))}
+    </div>
+  );
+};
