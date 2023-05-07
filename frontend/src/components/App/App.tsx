@@ -2,6 +2,7 @@ import DashboardPage from "../DashboardPage/DashboardPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { StocksPage } from "../StocksPage/StocksPage";
 import { CryptoPage } from "../CryptoPage/CryptoPage";
+import { JournalPage } from "../JournalPage/JournalPage";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path:'/CryptoPage',
     element:<CryptoPage/>
+  },
+  {
+    path:'/JournalPage',
+    element:<JournalPage/>
   }
 ]);
 

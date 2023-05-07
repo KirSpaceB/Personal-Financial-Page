@@ -8,12 +8,15 @@ import { useNavigate } from "react-router-dom";
 //Read code from time to time for wtfs momments ;o
 const DashboardPage = () => {
   const navigateHook = useNavigate()
-  function navigateToStocksPage() {
+  function navigateToStocksPage():void {
     navigateHook('/StocksPage')
   };
-  function navigateToCryptoPage() {
+  function navigateToCryptoPage():void {
     navigateHook('/CryptoPage')
   };
+  function navigateToJournalPage():void {
+    navigateHook('/JournalPage')
+  }
   
   return (
     <div>
@@ -26,7 +29,7 @@ const DashboardPage = () => {
         
         <div className="flex items-center justify-center space-x-14">
           
-          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold">
+          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToJournalPage}>
             <JournalCard journalCardTitle={cardsData['journalTitle']}/>
           </div>
           
