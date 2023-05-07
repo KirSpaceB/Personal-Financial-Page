@@ -5,6 +5,7 @@ export const SideBar = () => {
     <div>
       <div>
         SideBar
+        Balls
       </div>
     </div>
   )
