@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react"
-
+// Look into Abstracting the input component
 export const JournalPage = () => {
   const [getInputValue, setInputValue] = useState('');
   const [saveInputValue, setSavedInputValue] = useState<string[]>([])

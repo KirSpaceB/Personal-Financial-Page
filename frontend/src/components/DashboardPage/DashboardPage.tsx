@@ -4,20 +4,8 @@ import { JournalCard } from "./Cards/JournalCard/JournalCard";
 import { SideBar } from "./SideBar/SideBar";
 import cardsData from "../../assets/cardsData.json";
 import { NewsCard } from "../shared/NewsCard/NewsCard";
-import { useNavigate } from "react-router-dom";
 //Read code from time to time for wtfs momments ;o
 const DashboardPage = () => {
-  const navigateHook = useNavigate()
-  function navigateToStocksPage():void {
-    navigateHook('/StocksPage')
-  };
-  function navigateToCryptoPage():void {
-    navigateHook('/CryptoPage')
-  };
-  function navigateToJournalPage():void {
-    navigateHook('/JournalPage')
-  }
-  
   return (
     <div>
 
@@ -29,17 +17,17 @@ const DashboardPage = () => {
         
         <div className="flex items-center justify-center mb-8 space-x-16">
           
-          <div className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToJournalPage}>
+          <a className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" href="/JournalPage">
             <JournalCard journalCardTitle={cardsData['journalTitle']}/>
-          </div>
+          </a>
           
-          <div className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToStocksPage}>
+          <a className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" href="/StocksPage">
             <StocksCardFromIndex stocksCardTitle={cardsData['stockTitle']}/>
-          </div>
+          </a>
           
-          <div className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToCryptoPage}>
+          <a className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" href="/CryptoPage">
             <CryptoCard cryptoCardTitle={cardsData['cryptoTitle']}/>          
-          </div>
+          </a>
 
         </div>
 
