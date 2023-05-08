@@ -23,27 +23,27 @@ const DashboardPage = () => {
 
       <div>
         
-        <aside className="absolute w-16 h-screen mr-10 bg-pc2">
+        <aside className="absolute w-20 h-screen mr-10 bg-pc2">
           <SideBar/>
         </aside>
         
-        <div className="flex items-center justify-center space-x-14">
+        <div className="flex items-center justify-center mb-8 space-x-16">
           
-          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToJournalPage}>
+          <div className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToJournalPage}>
             <JournalCard journalCardTitle={cardsData['journalTitle']}/>
           </div>
           
-          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToStocksPage}>
+          <div className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToStocksPage}>
             <StocksCardFromIndex stocksCardTitle={cardsData['stockTitle']}/>
           </div>
           
-          <div className="w-[293px] h-[363px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToCryptoPage}>
+          <div className="w-[250px] h-[300px] mt-10 rounded-lg bg-pc2 text-center text-4xl font-bold cursor-pointer" onClick={navigateToCryptoPage}>
             <CryptoCard cryptoCardTitle={cardsData['cryptoTitle']}/>          
           </div>
 
         </div>
 
-        <div className="w-5/6 h-64 mx-auto mt-8 bg-pc3">
+        <div className="mx-auto w-[1100px] h-[320px] bg-pc3">
           <NewsCard/>
         </div>
 
