@@ -8,29 +8,29 @@ export const SideBar = () => {
     <div className='flex justify-center'>
       <div className="flex flex-col w-12 mt-10 space-y-14">
         <div>
-          <div className="flex items-center justify-center p-2 bg-pc3">
+          <a className="flex items-center justify-center p-2 bg-pc3" href='/'>
             <img src={Home} alt="Home" />
-          </div>
+          </a>
         </div>
         <div>
-          <div className="flex items-center justify-center p-3 bg-pc3">
+          <a className="flex items-center justify-center p-3 bg-pc3" href='/JournalPage'>
             <img src={CreditCard} alt="Credit Card" />
-          </div>
+          </a>
         </div>
         <div>
-          <div className="flex items-center justify-center p-3 bg-pc3">
+          <a className="flex items-center justify-center p-3 bg-pc3" href='StocksPage'>
             <img src={StocksLogo} alt="Stocks" />
-          </div>
+          </a>
         </div>
         <div>
-          <div className="flex items-center justify-center p-2 bg-pc3">
+          <a className="flex items-center justify-center p-2 bg-pc3" href='/CryptoPage'>
             <img src={CryptoLogo} alt="Crypto" />
-          </div>
+          </a>
         </div>
         <div>
-          <div className="flex items-center justify-center p-3 bg-pc3">
+          <a className="flex items-center justify-center p-3 bg-pc3" href='/JournalPage'>
             <img src={JournalLogo} alt="Journal" />
-          </div>
+          </a>
         </div>
       </div>
 
