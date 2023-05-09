@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { StocksPage } from "../StocksPage/StocksPage";
 import { CryptoPage } from "../CryptoPage/CryptoPage";
 import { JournalPage } from "../JournalPage/JournalPage";
+import { SideBar } from "../shared/SideBar/SideBar";
 
 const router = createBrowserRouter([
   {
@@ -23,15 +24,16 @@ const router = createBrowserRouter([
   }
 ]);
 
-function App() {
+export const App = () => {
 
   return (
     <>
       <div className="min-h-screen bg-pc1">
+        <aside className="absolute w-20 h-screen mr-10 bg-pc2">
+          <SideBar/>
+        </aside>
         <RouterProvider router={router}/>
       </div>
     </>
   )
 }
-
-export default App
