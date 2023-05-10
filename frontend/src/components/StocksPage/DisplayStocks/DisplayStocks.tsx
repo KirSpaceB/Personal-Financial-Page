@@ -23,7 +23,7 @@ export const DisplayStocks = () => {
         <div className="font-bold">High</div>
         <div className="font-bold">Low</div>
         <div className="font-bold">Close</div>
-        {Object.entries(displayStocks).map(([time, stock]) => (
+        {displayStocks ? Object.entries(displayStocks).map(([time, stock]) => (
           <React.Fragment key={time}>
             <div className="border-b border-gray-300">{time}</div>
             <div className="border-b border-gray-300">{stock["1. open"]}</div>
@@ -31,7 +31,8 @@ export const DisplayStocks = () => {
             <div className="border-b border-gray-300">{stock["3. low"]}</div>
             <div className="border-b border-gray-300">{stock["4. close"]}</div>
           </React.Fragment>
-        ))}
+        )) : 'Display Stocks cannot be rendered'}
+        {}
       </div>
     </div>
   );
