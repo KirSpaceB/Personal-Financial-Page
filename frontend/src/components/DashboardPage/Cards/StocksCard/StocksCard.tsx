@@ -1,5 +1,4 @@
 import { FC } from "react"
-
 export type stocksCardProps = {
   stocksCardTitle:string,
 };
