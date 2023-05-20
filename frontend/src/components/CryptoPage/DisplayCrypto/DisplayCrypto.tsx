@@ -16,10 +16,13 @@ export const DisplayCrypto = () => {
     const data = await getCoinGecko();
     setDisplayCoin(data);
   }
+  async function getApi() {
+    const data = await get();
+    console.log(data)
+  }
 
   useEffect(() => {
-    get()
-    coinGeckApiData();
+    getApi()
   }, []);
 
   return (

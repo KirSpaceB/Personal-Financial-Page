@@ -3,8 +3,9 @@ export async function get() {
     method:"GET",
     headers: {
       'Content-Type':'application/json',
-      'Access-Control-Allow-Origin':'*'
-    }
+      'Access-Control-Allow-Origin':'http://localhost:5000',
+      'Accept':'application/json',
+    },
   });
   const apiData = await response.json();
   console.log(apiData); 
