@@ -1,4 +1,4 @@
-export async function get() {
+export async function getBitcoinData() {
   const response = await fetch('http://127.0.0.1:5000/bitcoin_historical_data', {
     method:"GET",
     headers: {

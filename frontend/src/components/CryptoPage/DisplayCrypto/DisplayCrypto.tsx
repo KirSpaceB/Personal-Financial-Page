@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCoinGecko } from "../../../services/CoinGeckoApi/getCoinGecko";
-import {get} from "../../../services/BitcoinData/get"
+import {getBitcoinData} from "../../../services/BitcoinData/getBitCoinData"
 type ResponseData = {
   [key: string]: {
     usd: number;
@@ -17,7 +17,7 @@ export const DisplayCrypto = () => {
     setDisplayCoin(data);
   }
   async function getApi() {
-    const data = await get();
+    const data = await getBitcoinData();
     console.log(data)
   }
 
