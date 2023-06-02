@@ -1,4 +1,4 @@
-export type GetNewsApiResponse = {
+export type GetNewsApiResponseType = {
   nextPage: string,
   results: NewsApiResult[], // See this type right here its more safety from our other type
   status: string,

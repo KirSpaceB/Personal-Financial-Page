@@ -1,38 +1,52 @@
 import { useEffect, useState } from "react";
 import { getAlphaVantage } from "../../../services/AplhaVantageApi/getAlphaVantage";
-import React from "react";
+type MetaData = {
+  '1. Information': string,
+  '2. Symbol': string,
+  '3. Last Refreshed': string,
+  '4. Interval': string,
+  '5. Output Size': string,
+  '6. TimeZone':string
+};
+
+type TimeSeriesDataPoint = {
+  'open': string,
+  'high': string,
+  'low': string,
+  'close': string,
+  'volume': string,
+};
+
+type TimeSeries = {
+  [timestamp: string]: TimeSeriesDataPoint,
+};
+
+type APIResponse = {
+  'Meta Data': MetaData,
+  'Time Series (5min)': TimeSeries,
+};
 
 export const DisplayStocks = () => {
-  const [displayStocks, setDisplayStocks] = useState({});
+  const [displayStocks, setDisplayStocks] = useState<APIResponse>();
 
   useEffect(() => {
-    async function getData() {
+    const alphaVantageApiData = async () => {
       const apiData = await getAlphaVantage();
-      setDisplayStocks(apiData["Time Series (5min)"]);
-    }
-    getData();
+      console.log(apiData)
+      setDisplayStocks(apiData)
+      console.log(displayStocks);
+    };
+    alphaVantageApiData()
   }, []);
-  console.log(displayStocks);
-  
   return (
-    <div className="container p-6 mx-auto">
-      <h1 className="mb-4 text-2xl font-semibold">Display Stock Component</h1>
-      <div className="grid grid-cols-5 gap-4">
-        <div className="font-bold">Time</div>
-        <div className="font-bold">Open</div>
-        <div className="font-bold">High</div>
-        <div className="font-bold">Low</div>
-        <div className="font-bold">Close</div>
-        {displayStocks ? Object.entries(displayStocks).map(([time, stock]) => (
-          <React.Fragment key={time}>
-            <div className="border-b border-gray-300">{time}</div>
-            <div className="border-b border-gray-300">{stock["1. open"]}</div>
-            <div className="border-b border-gray-300">{stock["2. high"]}</div>
-            <div className="border-b border-gray-300">{stock["3. low"]}</div>
-            <div className="border-b border-gray-300">{stock["4. close"]}</div>
-          </React.Fragment>
-        )) : 'Display Stocks cannot be rendered'}
-        {}
+    <div className="flex flex-col items-center justify-center w-screen h-screen sm:flex-row">
+      <div className="w-[500px] h-[500px] bg-red-300 mb-4 sm:mb-0 sm:mr-4">
+      {displayStocks && Object.entries(displayStocks["Meta Data"]).map(([key, value]) => (
+        <div key={key}>{key}: {value}</div>
+      ))}
+      </div>
+      <div className="w-[500px] h-[500px] bg-red-300">
+        divTwo
       </div>
     </div>
   );
