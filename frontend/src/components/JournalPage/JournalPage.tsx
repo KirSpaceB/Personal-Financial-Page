@@ -1,22 +1,43 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { JournalHistory } from "./JournalHistory";
+import { JournalHistoryHandler } from "./JournalHistoryHandler";
 // Look into Abstracting the input component
+type inputValuesType = {
+  "Date of investment":string,
+  "Reasoning Of Investment": string,
+  "Profit / Loss? Why?": string,
+};
+
 export const JournalPage = () => {
-  const [getInputValue, setInputValue] = useState('');
-  const [saveInputValue, setSavedInputValue] = useState<string[]>([])
-  function inputHandler(e:ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
-  };
-  function submitHandler(e:React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSavedInputValue(prevArray => [...prevArray, getInputValue])
-  };
-  console.log(saveInputValue);
+  const [inputValues, setInputValues] = useState<inputValuesType>({
+    "Date of investment" : "",
+    "Reasoning Of Investment" : "",
+    "Profit / Loss? Why?" : "",
+  }); 
+  const [arrayOfObjects, setArrayOfObjects] = useState<Array<object>>([]);
   
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValues({
+      ...inputValues,
+      [e.target.placeholder]: e.target.value,
+    });
+  };
+  
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setArrayOfObjects((prevArray) => [...prevArray, inputValues]);
+    setInputValues({
+      "Date of investment": '',
+      "Reasoning Of Investment": '',
+      "Profit / Loss? Why?": ''
+    }); // Clear the input fields after submission
+  };
+  JournalHistoryHandler(arrayOfObjects)
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full p-8 bg-white rounded-lg shadow-md sm:w-3/4 md:w-1/2 lg:w-1/3">
+      <div className="flex w-full p-8 bg-white rounded-lg shadow-md sm:w-3/4 md:w-1/2 lg:w-1/3">
         <form action="" onSubmit={(e) => submitHandler(e)} className="space-y-4">
-        <input
+          <input
               type="text"
               name=""
               id=""
@@ -38,20 +59,14 @@ export const JournalPage = () => {
             id=""
             onChange={(e) => inputHandler(e)}
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-            placeholder="Why did investment Profit / Loss"
+            placeholder="Profit / Loss? Why?"
           />
           <button className="w-full p-2 text-white bg-indigo-500 rounded-lg hover:bg-indigo-600">
             Button
           </button>
         </form>
-        <div className="mt-8 space-y-2">
-          {saveInputValue.map((items, index) => (
-            <li key={index} className="p-2 bg-gray-200 rounded-lg">
-              {items}
-            </li>
-          ))}
-        </div>
       </div>
+      <JournalHistory/>
     </div>
   );
 };
