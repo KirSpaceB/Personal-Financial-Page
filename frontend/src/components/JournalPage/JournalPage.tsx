@@ -3,14 +3,14 @@ import { JournalHistory } from "./JournalHistory";
 import { JournalHistoryHandler } from "./JournalHistoryHandler";
 // Look into Abstracting the input component
 type inputValuesType = {
-  "Date of investment":string,
+  "Date of Investment":string,
   "Reasoning Of Investment": string,
   "Profit / Loss? Why?": string,
 };
 
 export const JournalPage = () => {
   const [inputValues, setInputValues] = useState<inputValuesType>({
-    "Date of investment" : "",
+    "Date of Investment" : "",
     "Reasoning Of Investment" : "",
     "Profit / Loss? Why?" : "",
   }); 
@@ -25,14 +25,16 @@ export const JournalPage = () => {
   
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setArrayOfObjects((prevArray) => [...prevArray, inputValues]);
+    const newArray = [...arrayOfObjects, inputValues];
+    console.log("🚀 ~ file: JournalPage.tsx:29 ~ submitHandler ~ newArray:", newArray)
+    setArrayOfObjects(newArray);    
+    JournalHistoryHandler(newArray);
     setInputValues({
-      "Date of investment": '',
+      "Date of Investment": '',
       "Reasoning Of Investment": '',
       "Profit / Loss? Why?": ''
     }); // Clear the input fields after submission
   };
-  JournalHistoryHandler(arrayOfObjects)
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="flex w-full p-8 bg-white rounded-lg shadow-md sm:w-3/4 md:w-1/2 lg:w-1/3">
@@ -43,7 +45,7 @@ export const JournalPage = () => {
               id=""
               onChange={(e) => inputHandler(e)}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-              placeholder="Date of investment"
+              placeholder="Date of Investment"
           />
           <input
               type="text"
