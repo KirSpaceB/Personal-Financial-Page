@@ -1,37 +1,36 @@
 import { useEffect, useState } from "react";
 import { getCoinGecko } from "../../../services/CoinGeckoApi/getCoinGecko";
 import {getBitcoinData} from "../../../services/BitcoinData/getBitCoinData"
-type ResponseData = {
-  [key: string]: {
-    usd: number;
-    usd_24h_vol: number;
-    usd_market_cap: number;
-  };
+type cryptoDataType = {
+  "Token":string,
+  "High 24h":number,
+  "Low 24h":number,
 };
 
 export const DisplayCrypto = () => {
-  const [displayCoin, setDisplayCoin] = useState<ResponseData>({});
-
-  async function coinGeckApiData() {
-    const data = await getCoinGecko();
-    setDisplayCoin(data);
-  }
-  async function getApi() {
-    const data = await getBitcoinData();
-    console.log(data)
-  }
-
-  useEffect(() => {
-    getApi()
-  }, []);
-
+  const [displayCoin, setDisplayCoin] = useState<cryptoDataType>();
+  
+  useEffect(() => {  
+    const fakeCryptoToken = {
+      "Token":"Bitcoin",
+      "High 24h": 100,
+      "Low 24h": 20,
+    };
+    setDisplayCoin(fakeCryptoToken);
+  },[])
+  
   return (
     <div>
-      {Object.entries(displayCoin).map(([key, responseData], index) => (
-        <div key={index}>
-          {key}: {responseData.usd} {responseData.usd_24h_vol} {responseData.usd_market_cap}
+      <div className="flex flex-col items-center justify-center w-screen h-screen sm:flex-row">
+        <div className="w-[500px] h-[500px] bg-red-500">
+          {displayCoin && Object.entries(displayCoin).map(([key, value], index) => (
+            <div key={index}>
+                <strong>{key}:</strong> {value}
+            </div>
+          ))}
         </div>
-      ))}
+        <div className="w-[500px] h-[500px] bg-blue-500">Where The Graph Goes</div>
+      </div>
     </div>
   );
 };

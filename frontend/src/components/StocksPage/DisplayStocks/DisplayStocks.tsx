@@ -1,35 +1,12 @@
 import { useEffect, useState,useRef } from "react";
 import { getAlphaVantage } from "../../../services/AplhaVantageApi/getAlphaVantage";
 import { AlphaVantageAPIType } from "../../../services/AplhaVantageApi/getAlphaVantage";
+import { generateFakeData } from "../../../services/FakeData/generateFakedata";
 import * as d3 from "d3";
 
 export const DisplayStocks = () => {
   const [displayStocks, setDisplayStocks] = useState<any>();
   const d3Container = useRef(null); // Ref for D3 container
-  
-  const generateFakeData = () => {
-    const startDate = new Date('2023-06-07T11:30:00');
-    const data = [];
-  
-    for (let i = 0; i < 10; i++) {
-      const time = new Date(startDate.getTime() + i * 5 * 60 * 1000);
-      const open = Math.random() * 1000;
-      const high = open + Math.random() * 100;
-      const low = open - Math.random() * 100;
-      const close = low + Math.random() * (high - low);
-      const volume = Math.floor(Math.random() * 100000);
-  
-      data.push({
-        time,
-        open: open.toFixed(4),
-        high: high.toFixed(4),
-        low: low.toFixed(4),
-        close: close.toFixed(4),
-        volume: volume.toString(),
-      });
-    }
-    return data;
-  };
 
   const prepareData = () => {
     if (displayStocks) {
