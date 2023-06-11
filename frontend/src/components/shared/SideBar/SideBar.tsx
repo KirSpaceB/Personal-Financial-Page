@@ -1,12 +1,10 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ActivePageContext } from './ActivePageContext';
-
 import Home from '../../shared/images/Home.png';
 import CreditCard from '../../shared/images/Credit card.png';
 import StocksLogo from '../../shared/images/Line_up.png';
 import CryptoLogo from '../../shared/images/solidity-original.png';
-import JournalLogo from '../../shared/images/Book_open_alt.png'
 
 export const SideBar = () => {
   const { activePage, setActivePage } = useContext(ActivePageContext);
@@ -37,11 +35,6 @@ export const SideBar = () => {
         <div>
           <div className={`flex items-center justify-center p-2 cursor-pointer ${activePage === '/CryptoPage' ? 'bg-red-500' : 'bg-pc3'}`} onClick={() => handleClick('/CryptoPage')}>
             <img src={CryptoLogo} alt="Crypto" />
-          </div>
-        </div>
-        <div>
-          <div className={`flex items-center justify-center p-3 cursor-pointer ${activePage === '/JournalPage' ? 'bg-red-500' : 'bg-pc3'}`} onClick={() => handleClick('/JournalPage')}>
-            <img src={JournalLogo} alt="Journal" />
           </div>
         </div>
       </div>
