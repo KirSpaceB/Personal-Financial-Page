@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { JournalHistory } from "./JournalHistory";
 import { JournalHistoryHandler } from "./JournalHistoryHandler";
 // Look into Abstracting the input component
-type inputValuesType = {
+export type inputValuesType = {
   "Date of Investment":string,
   "Reasoning Of Investment": string,
   "Profit / Loss? Why?": string,
@@ -14,7 +14,7 @@ export const JournalPage = () => {
     "Reasoning Of Investment" : "",
     "Profit / Loss? Why?" : "",
   }); 
-  const [arrayOfObjects, setArrayOfObjects] = useState<Array<object>>([]);
+  const [arrayOfObjects, setArrayOfObjects] = useState<inputValuesType[]>([]);
   
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValues({
@@ -37,7 +37,7 @@ export const JournalPage = () => {
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="flex w-full p-8 bg-white rounded-lg shadow-md sm:w-3/4 md:w-1/2 lg:w-1/3">
+      <div className="flex w-full p-8 mr-10 bg-white rounded-lg shadow-md sm:w-3/4 md:w-1/2 lg:w-1/3">
         <form action="" onSubmit={(e) => submitHandler(e)} className="space-y-4">
           <input
               type="text"
@@ -68,7 +68,7 @@ export const JournalPage = () => {
           </button>
         </form>
       </div>
-      <JournalHistory/>
+      <JournalHistory journalEntries={arrayOfObjects}/>
     </div>
   );
 };
