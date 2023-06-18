@@ -1,32 +1,9 @@
 import { useEffect, useState,useRef } from "react";
-import { getAlphaVantage } from "../../../services/AplhaVantageApi/getAlphaVantage";
-import { AlphaVantageAPIType } from "../../../services/AplhaVantageApi/getAlphaVantage";
 import { generateFakeData } from "../../../services/FakeData/generateFakedata";
 import * as d3 from "d3";
 
 export const DisplayStocks = () => {
-  const [displayStocks, setDisplayStocks] = useState<any>();
   const d3Container = useRef(null); // Ref for D3 container
-
-  const prepareData = () => {
-    if (displayStocks) {
-      const timeSeriesData = displayStocks['Time Series (5min)'];
-      const data = Object.entries(timeSeriesData).map(([time, values]) => ({
-        time,
-        value: parseFloat(values['4. close']),
-      }));
-      return data;
-    }
-    return [];
-  };
-
-  useEffect(() => {
-    const alphaVantageApiData = async () => {
-      // const apiData = await getAlphaVantage();
-      setDisplayStocks(generateFakeData());
-    };
-    alphaVantageApiData();
-  }, []);
 
   useEffect(() => {
     
@@ -98,7 +75,8 @@ export const DisplayStocks = () => {
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen sm:flex-row">
       <div className="w-[500px] h-[500px] bg-red-300 mb-4 sm:mb-0 sm:mr-4">
-        test
+        <p>"So we input a stock in here and it shows on the graph"</p>
+        <input type="text" placeholder="Input Stock" />
       </div>
       <div ref={d3Container}>
       </div>

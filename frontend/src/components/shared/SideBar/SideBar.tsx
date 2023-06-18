@@ -13,7 +13,7 @@ export const SideBar = () => {
   const handleClick = (page:string) => {
     setActivePage(page);
     navigate(page);
-  }
+  };
   return (
     <div className='flex justify-center'>
       <div className="flex flex-col w-12 mt-10 space-y-14">
