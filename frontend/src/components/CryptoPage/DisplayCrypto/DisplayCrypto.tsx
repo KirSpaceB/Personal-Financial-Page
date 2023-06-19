@@ -1,26 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { generateFakeData } from "../../../services/FakeData/generateFakedata";
 import * as d3 from "d3";
-type cryptoDataType = {
-  "Token":string,
-  "High 24h":number,
-  "Low 24h":number,
-};
 
 export const DisplayCrypto = () => {
-  const [displayCoin, setDisplayCoin] = useState<cryptoDataType>();
-  const [coinGraphData, setCoinGraphData] = useState<Array<Object>>();
+  const [coinGraphData] = useState<Array<Object>>();
   const d3Container = useRef(null);
-  useEffect(() => {  
-    
-    const fakeCryptoToken = {
-      "Token":"Bitcoin",
-      "High 24h": 100,
-      "Low 24h": 20,
-    };
-    setDisplayCoin(fakeCryptoToken);
-    setCoinGraphData(generateFakeData());
-  },[]);
   
   useEffect(() => {
 
@@ -85,21 +69,7 @@ export const DisplayCrypto = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center w-screen h-screen sm:flex-row">
-        
-        <div className="w-[500px] h-[500px] bg-red-300 mb-4 sm:mb-0 sm:mr-4">
-          <p>Type in bitcoin info in the tag and we get it on graph :D</p>
-          <input type="text" />
-          {displayCoin && Object.entries(displayCoin).map(([key, value], index) => (
-            <div key={index}>
-                <strong>{key}:</strong> {value}
-            </div>
-          ))};
-        </div>
-        
-        <div ref={d3Container}>{/* Displays the chart on the UI */}</div>
-        
-      </div>
+      <div ref={d3Container}>{/* Displays the chart on the UI */}</div>
     </div>
   );
 };

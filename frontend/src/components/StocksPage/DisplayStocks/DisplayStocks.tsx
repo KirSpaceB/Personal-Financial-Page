@@ -73,13 +73,8 @@ export const DisplayStocks = () => {
   }, []);
   
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen sm:flex-row">
-      <div className="w-[500px] h-[500px] bg-red-300 mb-4 sm:mb-0 sm:mr-4">
-        <p>"So we input a stock in here and it shows on the graph"</p>
-        <input type="text" placeholder="Input Stock" />
-      </div>
-      <div ref={d3Container}>
-      </div>
+    <div>
+      <div ref={d3Container}/>
     </div>
   );
 };
