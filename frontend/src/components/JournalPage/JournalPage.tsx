@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { JournalHistory } from "./JournalHistory";
 import { JournalHistoryHandler } from "./JournalHistoryHandler";
 // Look into Abstracting the input component
