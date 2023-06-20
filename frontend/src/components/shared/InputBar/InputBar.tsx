@@ -1,5 +1,8 @@
 import React, {useState, FormEvent} from "react";
-export const InputBar = () => {
+interface InputBarProps {
+  svgPaths: string[];
+}
+export const InputBar: React.FC<InputBarProps> = ({ svgPaths }) => {
   const [tickerName, setTickerName] = useState<string>("");
 
   const handleSubmit = (e : FormEvent) => {
@@ -12,14 +15,11 @@ export const InputBar = () => {
   return (
     <div className="">
       <div className="relative w-1/2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chart-dots absolute left-2 top-5 transform -translate-y-1/2" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chart-dots absolute left-3 top-1/2 transform -translate-y-1/2" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M3 3v18h18" />
-          <path d="M9 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M19 7m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M14 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M10.16 10.62l2.34 2.88" />
-          <path d="M15.088 13.328l2.837 -4.586" />
+          {svgPaths.map((path, index) => (
+            <path key={index} d={path} />
+          ))};
         </svg>
         <form onSubmit={handleSubmit}>
           <input
@@ -44,7 +44,8 @@ export const InputBar = () => {
             >
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-            <path d="M21 21l-6 -6" />
+            <path d="M21 21l-6 -6" 
+            />
           </svg>
         </form>
       </div>
