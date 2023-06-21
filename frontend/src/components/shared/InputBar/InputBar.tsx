@@ -1,5 +1,6 @@
-import React, {useState, FormEvent, useEffect} from "react";
+import React, {useState, FormEvent, useContext, useEffect} from "react";
 import { tickerAPI } from "./tickerAPI";
+import { TickerContext } from "./TickerContext";
 
 interface InputBarProps {
   svgPaths: string[];
@@ -8,10 +9,13 @@ interface InputBarProps {
 export const InputBar: React.FC<InputBarProps> = ({ svgPaths }) => {
 
   const [tickerName, setTickerName] = useState<string>("");
+  const {setTickerData} = useContext(TickerContext);
 
-  const handleSubmit = (e : FormEvent) => {
+  const handleSubmit = async (e : FormEvent) => {
     e.preventDefault();
-    tickerAPI(tickerName);
+    const contextTickerData = await tickerAPI(tickerName);
+    console.log("🚀 ~ file: InputBar.tsx:17 ~ handleSubmit ~ contextTickerData:", contextTickerData)
+    setTickerData(contextTickerData);
   };
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

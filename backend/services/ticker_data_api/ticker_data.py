@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, json, request
+from flask import Blueprint, jsonify,request
 import random
 
 ticker_data_api_blueprint = Blueprint("inputbar_api_blueprint", __name__);
@@ -6,8 +6,9 @@ ticker_data_api_blueprint = Blueprint("inputbar_api_blueprint", __name__);
 @ticker_data_api_blueprint.route("/ticker_data_api", methods=["POST"])
 def api():
     tslaVolatility = [];
-    TSLA_DATA = {"Open":int, "Close":int, "Volatility":[]}
     tickerNameFromFrontEnd = request.get_json();
+    TSLA_DATA = {"TickerName":tickerNameFromFrontEnd,"Open":int, "Close":int, "Volatility":[]}
+
     if tickerNameFromFrontEnd == "TSLA":
         open = random.randint(200,300);
         close = random.randint(250,350);
@@ -18,7 +19,7 @@ def api():
         TSLA_DATA["Close"] = close;
         TSLA_DATA["Volatility"] = tslaVolatility;
     else:
-        INVALID_TICKER = {"Open":int, "Close":int, "Volatility":[]}
+        INVALID_TICKER = {"TickerName":tickerNameFromFrontEnd,"Open":int, "Close":int, "Volatility":[]}
         invalidTickerVolatility = [];
         open = random.randint(2000,3000);
         close = random.randint(2500,3500);
@@ -31,4 +32,4 @@ def api():
         return({tickerNameFromFrontEnd:INVALID_TICKER})
 
     #We return an object with the ticker name
-    return jsonify({"TSLA_DATA":TSLA_DATA});
+    return jsonify({tickerNameFromFrontEnd:TSLA_DATA});
