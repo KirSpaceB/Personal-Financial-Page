@@ -1,14 +1,19 @@
-import React, {useState, FormEvent} from "react";
+import React, {useState, FormEvent, useEffect} from "react";
+import { tickerAPI } from "./tickerAPI";
+
 interface InputBarProps {
   svgPaths: string[];
 }
+
 export const InputBar: React.FC<InputBarProps> = ({ svgPaths }) => {
+
   const [tickerName, setTickerName] = useState<string>("");
 
   const handleSubmit = (e : FormEvent) => {
-    e.preventDefault();    
-    console.log(tickerName);
+    e.preventDefault();
+    tickerAPI(tickerName);
   };
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTickerName(event.target.value);
   };

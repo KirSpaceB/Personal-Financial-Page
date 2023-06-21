@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { InputBar } from "../shared/InputBar/InputBar";
-
+import { tickerAPI } from "../shared/InputBar/tickerAPI";
 export const DisplayStockTicker = () => {
   
   return (
